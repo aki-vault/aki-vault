@@ -4,7 +4,7 @@ import {
 import { Fragment, useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { CheckIcon, ClipboardCopyIcon } from '@heroicons/react/outline';
-import { encryptMessage, postSecret, randomString } from '../lib/secret';
+import { encryptMessage, postSecret, randomString } from './lib/secret';
 
 export default function CreateSecret() {
   const times = [
@@ -178,7 +178,7 @@ export default function CreateSecret() {
                 />
               </g>
             </svg>
-            <div className="text-7xl font-extralight text-[#EA8D72]">VAULT</div>
+            <div className="text-7xl font-extralight text-yellow-500">VAULT</div>
           </div>
           {errors && (
           <div className="px-4 py-2 mb-4 text-sm text-white bg-red-400 rounded-md">
@@ -190,7 +190,7 @@ export default function CreateSecret() {
               <textarea
                 id="password"
                 rows={5}
-                className="bg-gray-50 shadow-sm focus:ring-[#ea8d72] focus:border-[#ea8d72] block w-full sm:text-sm border-2 border-gray-400 rounded-md"
+                className="bg-gray-50 shadow-sm focus:ring-yellow-500 focus:border-yellow-500 block w-full sm:text-sm border-2 border-gray-400 rounded-md"
                 placeholder="Message ou mot de passe que vous désirez encrypter"
                 value={phrase}
                 onChange={(e) => setPhrase(e.target.value)}
@@ -215,8 +215,8 @@ export default function CreateSecret() {
                   {({ checked }) => (
                     <>
                       <div
-                        className={`w-4 h-4 mr-2 ring-2 ring-[#ea8d72] rounded-full border-2 border-white ${
-                          checked ? 'bg-[#ea8d72]' : ''
+                        className={`w-4 h-4 mr-2 ring-2 ring-yellow-500 rounded-full border-2 border-white ${
+                          checked ? 'bg-yellow-500' : ''
                         }`}
                       />
                       {time.key}
@@ -235,7 +235,7 @@ export default function CreateSecret() {
                   checked={oneTime}
                   onChange={() => setOneTime((r) => !r)}
                   className={`${
-                    oneTime ? 'bg-[#ea8d72]' : 'bg-gray-200'
+                    oneTime ? 'bg-yellow-500' : 'bg-gray-200'
                   } relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ea8d72]`}
                 >
                   <span
@@ -250,14 +250,14 @@ export default function CreateSecret() {
 
           <div className="mt-6">
             <button
-              className="w-full rounded-full bg-[#ea8d72] text-white py-3 relative disabled:opacity-40"
+              className="w-full rounded-full bg-yellow-500 text-white py-3 relative disabled:opacity-40"
               type="button"
               disabled={processing}
               onClick={submitForm}
             >
               {!processing && <>Partager</>}
               {processing && (
-              <span className="bg-[#ea8d72] text-white">
+              <span className="bg-yellow-500 text-white">
                 Chargement en cours...
               </span>
               )}
