@@ -18,7 +18,7 @@ You have to define one environment variable in order to specify where is located
 Create an `.env.local` at the root of this project and define your variable :
 
 ```
-NEXT_PUBLIC_BACKEND_URL="http://127.0.0.1:1337"
+REACT_APP_BACKEND_URL="http://127.0.0.1:1337"
 ```
 
 Of course, replace the URL with your Yopass Server Backend.
