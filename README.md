@@ -1,4 +1,6 @@
-A simpler version of the amazing Yopass frontend. This version does not support file uploads or custom decryption key.
+Aki's Vault is a simpler version of the amazing Yopass frontend. This version does not support file uploads or custom decryption key.
+
+![img](./public/preview.png)
 
 ## Getting Started
 
