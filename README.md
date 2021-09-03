@@ -29,10 +29,6 @@ Of course, replace the URL with your Yopass Server Backend URL.
 
 You can check the section `Nginx configuration` if you want to hide the backend url from the public.
 
-## Build
-
-Simply run the command bellow to build the frontend with React.
-
 ## Nginx configuration
 
 If you don't want to expose your backend URL, you can easily create a proxy on your nginx vhost configuration like this : 
@@ -46,6 +42,10 @@ server {
  }
 }
 ```
+
+## Build
+
+Simply run the command bellow to build the frontend with React.
 
 ```bash
 yarn build
