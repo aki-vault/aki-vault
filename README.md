@@ -1,5 +1,7 @@
 Aki's Vault is a simpler version of the amazing Yopass frontend. This version does not support file uploads or custom decryption key.
 
+The sole purpose of Yopass is to minimize the amount of passwords floating around in ticket management systems, Slack messages and emails. The message is encrypted/decrypted locally in the browser and then sent to yopass without the decryption key which is only visible once during encryption, yopass then returns a one-time URL with specified expiry date.
+
 ![img](./public/preview.png)
 
 ## Getting Started
@@ -20,14 +22,30 @@ You must define an environment variable to specify where the backend server is l
 Create an `.env.local` at the root of this project and define your variable :
 
 ```
-REACT_APP_BACKEND_URL="http://127.0.0.1:1337"
+REACT_APP_BACKEND_URL="https://vault.your-company.fr/backend"
 ```
 
 Of course, replace the URL with your Yopass Server Backend URL.
 
+You can check the section `Nginx configuration` if you want to hide the backend url from the public.
+
 ## Build
 
 Simply run the command bellow to build the frontend with React.
+
+## Nginx configuration
+
+If you don't want to expose your backend URL, you can easily create a proxy on your nginx vhost configuration like this : 
+
+```nginx
+server {
+ [...]
+
+ location /backend {
+   proxy_pass http://127.0.0.1:1337;
+ }
+}
+```
 
 ```bash
 yarn build
