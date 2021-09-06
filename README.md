@@ -37,8 +37,8 @@ If you don't want to expose your backend URL, you can easily create a proxy on y
 server {
  [...]
 
- location /backend {
-   proxy_pass http://127.0.0.1:1337;
+ location /backend/ {
+   proxy_pass http://127.0.0.1:1337/;
  }
 }
 ```
