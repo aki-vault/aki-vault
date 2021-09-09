@@ -55,7 +55,7 @@ A new `build` directory has now appeared, it's an static export of the react app
 
 ## Build and install yopass-server
 ```bash
-# sudo apt-get install golang
+sudo apt-get install golang
 git clone https://github.com/jhaals/yopass.git
 cd yopass
 go build ./cmd/yopass-server
