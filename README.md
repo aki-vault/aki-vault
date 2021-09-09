@@ -89,4 +89,4 @@ sudo systemctl enable yopass.service
 sudo systemctl start yopass.service
 ```
 
-Remember, you should have memcached or redis service to run yopass. Provided example is listening 127.0.0.1:1337 and uses memcached (on default 127.0.0.1:11211).
+Remember, you should have memcached or redis service to run yopass. Provided example listen 127.0.0.1:1337 and uses memcached (on default 127.0.0.1:11211).
