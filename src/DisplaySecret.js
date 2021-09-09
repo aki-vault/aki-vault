@@ -73,7 +73,7 @@ export default function DisplaySecret() {
             </svg>
           </div>
 
-        <div className="text-center">Le message décrypté :</div>
+        <div className="text-center">Le message déchiffré :</div>
         <div className="flex items-stretch mt-2">
           <textarea
               rows={8}
