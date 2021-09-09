@@ -1,0 +1,42 @@
+{
+  "createSecret": {
+    "phrasePlaceholder": "Message or password you want to encrypt",
+    "howLong": {
+      "label": "How long will it last?",
+      "help": "Length of time your encrypted message will be kept before deletion",
+      "values": {
+        "hour": "One hour",
+        "day": "One day",
+        "week": "One week"
+      }
+    },
+    "oneTime": {
+      "label": "Single-use",
+      "help": "Deleting after reading"
+    },
+    "submit": {
+      "label": "Share my message",
+      "loading": "Loading"
+    },
+    "errors": {
+      "phraseEmpty": "The content of your message should not be empty",
+      "creatingFailed": "An error occurred while creating the secure message."
+    }
+  },
+  "successModal": {
+    "title": "Encryption completed",
+    "content": "You can provide the link below to your correspondent.",
+    "copied": "Copied!",
+    "backToVault": "Return to the Vault"
+  },
+  "displaySecret": {
+    "loading": "Retrieving your message",
+    "inputTitle": "The decrypted message:",
+    "copyLabel": "Copy the content",
+    "copied": "Copied!"
+  },
+  "errorPage": {
+    "title": "Whoops",
+    "content": "This message has expired or no longer exists"
+  }
+}
