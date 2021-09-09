@@ -1,0 +1,3 @@
+# Options to pass to yopass-server
+# see https://github.com/jhaals/yopass#installation--configuration for configuration options
+YOPASS_OPTS=--address 127.0.0.1 --database=memcached --memcached "localhost:11211" --port 1337
