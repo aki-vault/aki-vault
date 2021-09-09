@@ -1,0 +1,32 @@
+{
+  "createSecret": {
+    "phrasePlaceholder": "Message ou mot de passe que vous désirez chiffrer",
+    "howLong": {
+      "label": "Pendant combien de temps ?",
+      "help": "Durée pendant laquelle votre message chiffré sera conservé avant effacement",
+      "values": {
+        "hour": "Une heure",
+        "day": "Une journée",
+        "week": "Une semaine"
+      }
+    },
+    "oneTime": {
+      "label": "À usage unique",
+      "help": "Suppression après lecture"
+    },
+    "submit": {
+      "label": "Partager mon message",
+      "loading": "Chargement en cours"
+    },
+    "errors": {
+      "phraseEmpty": "Le contenu de votre message ne doit pas être vide",
+      "creatingFailed": "Une erreur est survenue lors de la création du message sécurisé."
+    }
+  },
+  "successModal": {
+    "title": "Chiffrage terminé",
+    "content": "Vous pouvez fournir le lien ci-dessous à votre correspondant.",
+    "copied": "Copié !",
+    "backToVault": "Retourner sur Vault"
+  }
+}

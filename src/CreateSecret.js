@@ -5,12 +5,13 @@ import { Fragment, useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { CheckIcon, ClipboardCopyIcon } from '@heroicons/react/outline';
 import { encryptMessage, postSecret, randomString } from './lib/secret';
+import {useTranslation} from "react-i18next";
 
 export default function CreateSecret() {
   const times = [
-    { key: 'Une heure', value: 3600 },
-    { key: 'Une journée', value: 86400 },
-    { key: 'Une semaine', value: 604800 },
+    { key: 'hour', value: 3600 },
+    { key: 'day', value: 86400 },
+    { key: 'week', value: 604800 },
   ];
 
   const [errors, setErrors] = useState();
@@ -22,12 +23,13 @@ export default function CreateSecret() {
   const [encryptedUri, setEncryptedUri] = useState('https://');
   const [phrase, setPhrase] = useState('');
   const [copied, setCopied] = useState(false);
+  const { t } = useTranslation();
 
   const submitForm = async () => {
     setProcessing(true);
 
     if(phrase === '') {
-      setErrors('Le contenu de votre message ne doit pas être vide');
+      setErrors(t('createSecret.errors.phraseEmpty'));
       setProcessing(false);
       return false;
     }
@@ -49,7 +51,8 @@ export default function CreateSecret() {
       setProcessing(false);
       setPhrase('');
     } catch (e) {
-      setErrors('Une erreur est survenue lors de la création du message sécurisé.');
+      setErrors(t('createSecret.errors.creatingFailed'));
+      setProcessing(false);
     }
   };
 
@@ -102,11 +105,11 @@ export default function CreateSecret() {
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-500"
                     >
-                      Chiffrage terminé
+                      {t('successModal.title')}
                     </Dialog.Title>
                     <div className="my-4">
                       <p className="text-sm text-gray-500">
-                        Vous pouvez fournir le lien ci-dessous à votre correspondant.
+                        {t('successModal.content')}
                       </p>
                     </div>
                     <div className="flex items-stretch">
@@ -126,7 +129,7 @@ export default function CreateSecret() {
                           <span className="absolute left-1/2 transform -translate-x-1/2 top-full h-4 w-4 overflow-hidden">
                             <span className=" h-2 w-2 block bg-gray-600 -rotate-45 transform origin-top-left" />
                           </span>
-                          Copié !
+                          {t('successModal.copied')}
                         </span>}
                       </button>
                       <input
@@ -147,7 +150,7 @@ export default function CreateSecret() {
                       setIsOpen(false)
                     }}
                   >
-                    Retour sur Vault
+                    {t('successModal.backToVault')}
                   </button>
                 </div>
               </div>
@@ -179,7 +182,7 @@ export default function CreateSecret() {
                 id="password"
                 rows={8}
                 className="bg-white p-3 focus:outline-none shadow-sm block w-full sm:text-sm border-2 border-gray-500 rounded-md"
-                placeholder="Message ou mot de passe que vous désirez chiffrer"
+                placeholder={t('createSecret.phrasePlaceholder')}
                 value={phrase}
                 onChange={(e) => setPhrase(e.target.value)}
               />
@@ -189,8 +192,8 @@ export default function CreateSecret() {
           <div className="flex justify-between mt-6">
             <div>
               <div className="mb-3">
-                <div className="text-gray-500 text-lg font-semibold">Pendant combien de temps ?</div>
-                <div className="text-sm text-gray-400">Durée pendant laquelle votre message chiffré sera conservé avant effacement</div>
+                <div className="text-gray-500 text-lg font-semibold">{t('createSecret.howLong.label')}</div>
+                <div className="text-sm text-gray-400">{t('createSecret.howLong.help')}</div>
               </div>
 
               <RadioGroup
@@ -212,7 +215,7 @@ export default function CreateSecret() {
                                     checked ? 'bg-gray-500' : ''
                                 }`}
                             />
-                            {time.key}
+                            {t(`createSecret.howLong.values.${time.key}`)}
                           </>
                       )}
                     </RadioGroup.Option>
@@ -222,8 +225,8 @@ export default function CreateSecret() {
 
             <div className="text-right">
               <div className="mb-3">
-                <div className="text-gray-500 text-lg font-semibold">À usage unique</div>
-                <div className="text-sm text-gray-400">Suppression après lecture</div>
+                <div className="text-gray-500 text-lg font-semibold">{t(`createSecret.oneTime.label`)}</div>
+                <div className="text-sm text-gray-400">{t(`createSecret.oneTime.help`)}</div>
               </div>
               <Switch.Group>
                 <div className="flex items-center justify-end">
@@ -252,10 +255,10 @@ export default function CreateSecret() {
               disabled={processing}
               onClick={submitForm}
             >
-              {!processing && <>Partager mon message</>}
+              {!processing && <>{t(`createSecret.submit.label`)}</>}
               {processing && (
               <span className="text-white">
-                Chargement en cours...
+                {t(`createSecret.submit.loading`)}
               </span>
               )}
             </button>
