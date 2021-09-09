@@ -28,5 +28,12 @@
     "content": "Vous pouvez fournir le lien ci-dessous à votre correspondant.",
     "copied": "Copié !",
     "backToVault": "Retourner sur Vault"
+  },
+  "displaySecret": {
+    "loading": "Récupération de votre message",
+    "inputTitle": "Le message déchiffré :",
+    "copyLabel": "Copier le contenu",
+    "copied": "Copié !"
+  },
   }
 }
