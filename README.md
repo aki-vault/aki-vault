@@ -32,6 +32,16 @@ Of course, replace the URL with your Yopass Server Backend URL.
 
 You can check the section `Nginx configuration` if you want to hide the backend url from the public.
 
+### Language
+
+the `src/translations` folder contains all available translations. You can set the language of your application by setting a custom environment variable in `.env.local` as below :
+
+```
+REACT_APP_LANG="en_US"
+```
+
+By default, the application will load the en_US language.
+
 ## Build
 
 Simply run the command bellow to build the frontend with React.

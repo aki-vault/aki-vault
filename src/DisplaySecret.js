@@ -6,6 +6,7 @@ import { decryptMessage } from './lib/secret';
 import {ClipboardCopyIcon} from "@heroicons/react/outline";
 import { useCopyToClipboard } from 'react-use';
 import ErrorPage from "./ErrorPage";
+import {useTranslation} from "react-i18next";
 
 const fetcher = async (url) => {
   const request = await fetch(url);
@@ -20,6 +21,7 @@ export default function DisplaySecret() {
   const { key, password } = useParams();
   const [copied, setCopied] = useState(false);
   const [, copyToClipboard] = useCopyToClipboard();
+  const { t } = useTranslation();
 
   const [secret, setSecret] = useState('');
   const [invalidPassword, setInvalidPassword] = useState(false);
@@ -56,7 +58,7 @@ export default function DisplaySecret() {
   }
 
   if (!data) {
-    return <p>Récupération de votre message</p>;
+    return <p>{t('displaySecret.loading')}</p>;
   }
 
   return (
@@ -73,13 +75,12 @@ export default function DisplaySecret() {
             </svg>
           </div>
 
-        <div className="text-center">Le message déchiffré :</div>
+        <div className="text-center">{t('displaySecret.inputTitle')}</div>
         <div className="flex items-stretch mt-2">
           <textarea
               rows={8}
               readOnly
               className="bg-white p-3 focus:outline-none shadow-sm block w-full sm:text-sm border-2 border-gray-500 rounded-md"
-              placeholder="Message ou mot de passe que vous désirez chiffrer"
               value={secret}
           />
         </div>
@@ -97,13 +98,13 @@ export default function DisplaySecret() {
                   className="w-6 h-6 text-white mr-2"
                   aria-hidden="true"
               />
-              Copier le contenu
+              {t('displaySecret.copyLabel')}
               {copied && (
                 <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 text-xs whitespace-nowrap bg-gray-600 text-white px-2 py-1 rounded-md">
                   <span className="absolute left-1/2 transform -translate-x-1/2 top-full h-4 w-4 overflow-hidden">
                     <span className=" h-2 w-2 block bg-gray-600 -rotate-45 transform origin-top-left" />
                   </span>
-                  Copié !
+                  {t('displaySecret.copied')}
                 </span>
               )}
             </button>
