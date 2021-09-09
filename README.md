@@ -68,7 +68,7 @@ server {
 
 
 ## Build and install yopass-server
-This repo is not design to provide support on yopass solution, this is just given as example and reminder
+This repo is not designed to provide support on yopass solution, this is just given as example and reminder
 (on Debian 11)
 ```bash
 sudo apt-get install golang
@@ -85,7 +85,8 @@ cd ~/aki-vault
 sudo cp example/server/yopass-default-config /etc/default/yopass-server
 sudo cp example/server/yopass.service /etc/systemd/system/yopass.service
 sudo systemctl daemon-reload
+sudo systemctl enable yopass.service
 sudo systemctl start yopass.service
 ```
 
-Remember, you should have memcached or redis service to run yopass. This provided example is listening 127.0.0.1:1337 and works with memcached (default 127.0.0.1:11211).
+Remember, you should have memcached or redis service to run yopass. Provided example is listening 127.0.0.1:1337 and uses memcached (on default 127.0.0.1:11211).
