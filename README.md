@@ -39,7 +39,7 @@ Simply run the command bellow to build the frontend with React.
 yarn build
 ```
 
-A new `build` directory has now appeared, it's an static export of the react app, you can place it anywhere you want, e.g. /path/to/vault-build.
+A new `build` directory has now appeared, it's an static export of the react app, you can place it anywhere you want, e.g. `/path/to/vault-build`.
 
 ## Nginx configuration
 
