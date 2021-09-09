@@ -2,7 +2,7 @@ Aki's Vault is a simpler version of the amazing Yopass frontend. This version do
 
 The sole purpose of Yopass is to minimize the amount of passwords floating around in ticket management systems, Slack messages and emails. The message is encrypted/decrypted locally in the browser and then sent to yopass without the decryption key which is only visible once during encryption, yopass then returns a one-time URL with specified expiry date.
 
-![img](./public/preview.png)
+![img](./public/LOGO-VAULT.png)
 
 ## Getting Started
 
