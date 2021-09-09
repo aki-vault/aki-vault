@@ -35,5 +35,8 @@
     "copyLabel": "Copier le contenu",
     "copied": "Copié !"
   },
+  "errorPage": {
+    "title": "Whoops",
+    "content": "Ce message a expiré ou n'existe plus"
   }
 }
