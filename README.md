@@ -11,6 +11,7 @@ First, install dependencies and run the development server:
 ```bash
 cd ~
 git clone https://github.com/Akiletour/aki-vault.git
+cd aki-vault
 yarn install
 yarn start
 ```
