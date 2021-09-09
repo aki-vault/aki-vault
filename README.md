@@ -53,4 +53,12 @@ yarn build
 
 A new `build` directory has now appeared, it's an static export of the react app, you can place it whereever you want.
 
+## Build and install yopass-server
+```bash
+# sudo apt-get install golang
+git clone https://github.com/jhaals/yopass.git
+cd yopass
+go build ./cmd/yopass-server
+```
+and then, [read the doc](https://github.com/jhaals/yopass#installation--configuration)
 
