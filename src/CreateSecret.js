@@ -15,7 +15,7 @@ export default function CreateSecret() {
   ];
 
   const [errors, setErrors] = useState();
-  const [plan, setPlan] = useState(3600);
+  const [plan, setPlan] = useState(Number(process.env.REACT_APP_DEFAULT_RENTENTION_PERIOD));
   const [oneTime, setOneTime] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [processing, setProcessing] = useState(false);
