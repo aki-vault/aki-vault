@@ -14,10 +14,10 @@ import {
     return min + (byteArray[0] % range);
   };
   
-  export const randomString = () => {
+  export const randomString = (stringLength = 22, specialChars = '') => {
     let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 22; i += 1) {
+    const possible = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789${specialChars}`;
+    for (let i = 0; i < stringLength; i += 1) {
       text += possible.charAt(randomInt(0, possible.length));
     }
     return text;
@@ -54,4 +54,3 @@ import {
   };
   
   export const postSecret = async (body) => post(`${backendDomain}/secret`, body);
-  
