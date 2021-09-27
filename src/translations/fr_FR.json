@@ -1,5 +1,6 @@
 {
   "createSecret": {
+    "generatePassword": "Générer un mot de passe aléatoire",
     "phrasePlaceholder": "Message ou mot de passe que vous désirez chiffrer",
     "howLong": {
       "label": "Pendant combien de temps ?",
