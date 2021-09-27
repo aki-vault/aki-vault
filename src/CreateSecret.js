@@ -1,7 +1,7 @@
 import {
   RadioGroup, Switch, Dialog, Transition,
 } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import {Fragment, useMemo, useState} from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { CheckIcon, ClipboardCopyIcon } from '@heroicons/react/outline';
 import { encryptMessage, postSecret, randomString } from './lib/secret';
@@ -55,6 +55,8 @@ export default function CreateSecret() {
       setProcessing(false);
     }
   };
+
+  const generateRandomPassword = useMemo(() => randomString(12, '!.=&/'), []);
 
   return (
     <>
