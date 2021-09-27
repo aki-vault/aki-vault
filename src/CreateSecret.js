@@ -58,7 +58,7 @@ export default function CreateSecret() {
   };
 
   const generateRandomPassword = useCallback((e) => {
-    const randomPwd = randomString(12, '!.=&/');
+    const randomPwd = randomString(process.env.REACT_APP_GEN_PWD_LENGTH, '!.=&/');
 
     let textareaField = textRef.current;
     let textToInsert = randomPwd
