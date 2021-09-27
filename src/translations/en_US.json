@@ -1,5 +1,6 @@
 {
   "createSecret": {
+    "generatePassword": "Generate a random password",
     "phrasePlaceholder": "Message or password you want to encrypt",
     "howLong": {
       "label": "How long will it last?",

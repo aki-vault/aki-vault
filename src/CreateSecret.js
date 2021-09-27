@@ -1,7 +1,7 @@
 import {
   RadioGroup, Switch, Dialog, Transition,
 } from '@headlessui/react';
-import {Fragment, useMemo, useState} from 'react';
+import {Fragment, useCallback, useRef, useState} from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { CheckIcon, ClipboardCopyIcon } from '@heroicons/react/outline';
 import { encryptMessage, postSecret, randomString } from './lib/secret';
@@ -23,6 +23,7 @@ export default function CreateSecret() {
   const [encryptedUri, setEncryptedUri] = useState('https://');
   const [phrase, setPhrase] = useState('');
   const [copied, setCopied] = useState(false);
+  const textRef = useRef(null);
   const { t } = useTranslation();
 
   const submitForm = async () => {
@@ -56,7 +57,16 @@ export default function CreateSecret() {
     }
   };
 
-  const generateRandomPassword = useMemo(() => randomString(12, '!.=&/'), []);
+  const generateRandomPassword = useCallback((e) => {
+    const randomPwd = randomString(12, '!.=&/');
+
+    let textareaField = textRef.current;
+    let textToInsert = randomPwd
+    let cursorPosition = textareaField.selectionStart
+    let textBeforeCursorPosition = textareaField.value.substring(0, cursorPosition)
+    let textAfterCursorPosition = textareaField.value.substring(cursorPosition, textareaField.value.length)
+    textareaField.value = textBeforeCursorPosition + textToInsert + textAfterCursorPosition
+  }, []);
 
   return (
     <>
@@ -179,8 +189,9 @@ export default function CreateSecret() {
           </div>
           )}
           <div>
-            <div className="mt-1">
+            <div className="mt-1 relative">
               <textarea
+                ref={textRef}
                 id="password"
                 rows={8}
                 className="bg-white p-3 focus:outline-none shadow-sm block w-full sm:text-sm border-2 border-gray-500 rounded-md"
@@ -188,6 +199,23 @@ export default function CreateSecret() {
                 value={phrase}
                 onChange={(e) => setPhrase(e.target.value)}
               />
+                <button
+                    className="group absolute right-4 bottom-4"
+                    type="button"
+                    onClick={e => generateRandomPassword(e)}
+                >
+                  <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <g fill="none" fillRule="nonzero">
+                      <path fill="#000" d="m303.06 348.91.1.09-24 27a24 24 0 0 1-17.94 8H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-78a24 24 0 0 1 7-17l161.83-161.83-.11-.35c19.994 60.85 71.428 106.063 134.34 118.09Z" opacity=".4"/>
+                      <path fill="#000" d="M336 0c-97.202 0-176 78.798-176 176s78.798 176 176 176 176-78.798 176-176A176 176 0 0 0 336 0Zm48 176c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48Z"/>
+                      <path fill="#27AE60" d="M505.556 346.783c4.113 4.113 6.444 9.69 6.444 15.494v65.4c0 5.805-2.33 11.38-6.444 15.494l-62.34 62.385c-4.112 4.113-9.688 6.444-15.493 6.444h-65.4c-5.805 0-11.38-2.33-15.494-6.444l-62.385-62.34c-4.113-4.112-6.444-9.688-6.444-15.493v-65.4c0-5.805 2.33-11.38 6.444-15.494l62.34-62.385c4.112-4.113 9.688-6.444 15.493-6.444h65.4c5.805 0 11.38 2.33 15.494 6.444l62.385 62.34Zm-44.743 35.42c0-3.016-2.468-5.484-5.485-5.484h-42.047v-42.047c0-3.017-2.468-5.485-5.484-5.485h-25.594c-3.016 0-5.484 2.468-5.484 5.485v42.047h-42.047c-3.017 0-5.485 2.468-5.485 5.484v25.594c0 3.016 2.468 5.484 5.485 5.484h42.047v42.047c0 3.017 2.468 5.485 5.484 5.485h25.594c3.016 0 5.484-2.468 5.484-5.485v-42.047h42.047c3.017 0 5.485-2.468 5.485-5.484v-25.594Z"/>
+                    </g>
+                  </svg>
+
+                  <span className="group-hover:block hidden absolute top-full left-1/2 transform -translate-x-1/2 bg-black text-xs mt-2 px-3 py-1 rounded-md text-white whitespace-nowrap">
+                    {t('createSecret.generatePassword')}
+                  </span>
+                </button>
             </div>
           </div>
 
