@@ -65,7 +65,7 @@ export default function CreateSecret() {
     let cursorPosition = textareaField.selectionStart
     let textBeforeCursorPosition = textareaField.value.substring(0, cursorPosition)
     let textAfterCursorPosition = textareaField.value.substring(cursorPosition, textareaField.value.length)
-    textareaField.value = textBeforeCursorPosition + textToInsert + textAfterCursorPosition
+    setPhrase(textBeforeCursorPosition + textToInsert + textAfterCursorPosition)
   }, []);
 
   return (
@@ -126,7 +126,7 @@ export default function CreateSecret() {
                     </div>
                     <div className="flex items-stretch">
                       <button
-                        className="flex relative items-center justify-center w-10 h-10 bg-green-200"
+                        className="relative flex items-center justify-center w-10 h-10 bg-green-200"
                         type="button"
                         onClick={() => {
                           setCopied(true)
@@ -137,15 +137,15 @@ export default function CreateSecret() {
                           className="w-6 h-6 text-green-600"
                           aria-hidden="true"
                         />
-                        {copied && <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 text-xs whitespace-nowrap bg-gray-600 text-white px-2 py-1 rounded-md">
-                          <span className="absolute left-1/2 transform -translate-x-1/2 top-full h-4 w-4 overflow-hidden">
-                            <span className=" h-2 w-2 block bg-gray-600 -rotate-45 transform origin-top-left" />
+                        {copied && <span className="absolute px-2 py-1 mb-2 text-xs text-white transform -translate-x-1/2 bg-gray-600 rounded-md bottom-full left-1/2 whitespace-nowrap">
+                          <span className="absolute w-4 h-4 overflow-hidden transform -translate-x-1/2 left-1/2 top-full">
+                            <span className="block w-2 h-2 origin-top-left transform -rotate-45 bg-gray-600 " />
                           </span>
                           {t('successModal.copied')}
                         </span>}
                       </button>
                       <input
-                        className="flex-1 w-full text-xs bg-green-50 px-2 outline-none focus:ring-0 focus:border-green-200 active:outline-none"
+                        className="flex-1 w-full px-2 text-xs outline-none bg-green-50 focus:ring-0 focus:border-green-200 active:outline-none"
                         type="text"
                         readOnly
                         value={encryptedUri}
@@ -156,7 +156,7 @@ export default function CreateSecret() {
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
-                    className="inline-flex justify-center w-full font-medium px-4 py-4 text-base font-medium text-white bg-gray-500 border border-transparent rounded-full shadow-sm hover:bg-gray-700 focus:outline-none sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-4 text-base font-medium text-white bg-gray-500 border border-transparent rounded-full shadow-sm hover:bg-gray-700 focus:outline-none sm:text-sm"
                     onClick={() => {
                       setCopied(false)
                       setIsOpen(false)
@@ -189,18 +189,18 @@ export default function CreateSecret() {
           </div>
           )}
           <div>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <textarea
                 ref={textRef}
                 id="password"
                 rows={8}
-                className="bg-white p-3 focus:outline-none shadow-sm block w-full sm:text-sm border-2 border-gray-500 rounded-md"
+                className="block w-full p-3 bg-white border-2 border-gray-500 rounded-md shadow-sm focus:outline-none sm:text-sm"
                 placeholder={t('createSecret.phrasePlaceholder')}
                 value={phrase}
                 onChange={(e) => setPhrase(e.target.value)}
               />
                 <button
-                    className="group absolute right-4 bottom-4"
+                    className="absolute group right-4 bottom-4"
                     type="button"
                     onClick={e => generateRandomPassword(e)}
                 >
@@ -212,7 +212,7 @@ export default function CreateSecret() {
                     </g>
                   </svg>
 
-                  <span className="group-hover:block hidden absolute top-full left-1/2 transform -translate-x-1/2 bg-black text-xs mt-2 px-3 py-1 rounded-md text-white whitespace-nowrap">
+                  <span className="absolute hidden px-3 py-1 mt-2 text-xs text-white transform -translate-x-1/2 bg-black rounded-md group-hover:block top-full left-1/2 whitespace-nowrap">
                     {t('createSecret.generatePassword')}
                   </span>
                 </button>
@@ -222,12 +222,12 @@ export default function CreateSecret() {
           <div className="flex justify-between mt-6">
             <div>
               <div className="mb-3">
-                <div className="text-gray-500 text-lg font-semibold">{t('createSecret.howLong.label')}</div>
+                <div className="text-lg font-semibold text-gray-500">{t('createSecret.howLong.label')}</div>
                 <div className="text-sm text-gray-400">{t('createSecret.howLong.help')}</div>
               </div>
 
               <RadioGroup
-                  className="grid gap-4 grid-flow-col justify-start"
+                  className="grid justify-start grid-flow-col gap-4"
                   value={plan}
                   onChange={setPlan}
               >
@@ -255,7 +255,7 @@ export default function CreateSecret() {
 
             <div className="text-right">
               <div className="mb-3">
-                <div className="text-gray-500 text-lg font-semibold">{t(`createSecret.oneTime.label`)}</div>
+                <div className="text-lg font-semibold text-gray-500">{t(`createSecret.oneTime.label`)}</div>
                 <div className="text-sm text-gray-400">{t(`createSecret.oneTime.help`)}</div>
               </div>
               <Switch.Group>
@@ -278,9 +278,9 @@ export default function CreateSecret() {
             </div>
           </div>
 
-          <div className="mt-10 max-w-md mx-auto">
+          <div className="max-w-md mx-auto mt-10">
             <button
-              className="w-full rounded-full font-semibold bg-gray-500 text-white py-4 relative disabled:opacity-40"
+              className="relative w-full py-4 font-semibold text-white bg-gray-500 rounded-full disabled:opacity-40"
               type="button"
               disabled={processing}
               onClick={submitForm}
