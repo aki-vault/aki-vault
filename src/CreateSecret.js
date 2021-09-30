@@ -193,7 +193,7 @@ export default function CreateSecret() {
               <textarea
                 ref={textRef}
                 id="password"
-                rows={process.env.REACT_APP_TEXTAREA_HEIGHT}
+                rows={process.env.REACT_APP_TEXTAREA_LINE}
                 className="block w-full p-3 bg-white border-2 border-gray-500 rounded-md shadow-sm focus:outline-none sm:text-sm"
                 placeholder={t('createSecret.phrasePlaceholder')}
                 value={phrase}
