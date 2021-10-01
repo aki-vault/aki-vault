@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useAsync } from 'react-use';
 import useSWR from 'swr';
@@ -53,6 +53,15 @@ export default function DisplaySecret() {
 
   useAsync(async () => decrypt(), [password, data]);
 
+  const copyFieldToClipboard = useCallback((content) => {
+    copyToClipboard(content)
+    setCopied(true)
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000)
+  }, [copyToClipboard])
+
   if (error || invalidPassword) {
     return <ErrorPage />;
   }
@@ -89,10 +98,7 @@ export default function DisplaySecret() {
             <button
                 className="w-full flex items-center justify-center rounded-full font-semibold bg-gray-500 text-white py-4 relative"
                 type="button"
-                onClick={() => {
-                  setCopied(true)
-                  copyToClipboard(secret)
-                }}
+                onClick={() => copyFieldToClipboard(secret)}
             >
               <ClipboardCopyIcon
                   className="w-6 h-6 text-white mr-2"

@@ -68,6 +68,15 @@ export default function CreateSecret() {
     setPhrase(textBeforeCursorPosition + textToInsert + textAfterCursorPosition)
   }, []);
 
+  const copyFieldToClipboard = useCallback((content) => {
+    copyToClipboard(content)
+    setCopied(true)
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000)
+  }, [copyToClipboard])
+
   return (
     <>
       <Transition.Root show={isOpen} as={Fragment}>
@@ -128,10 +137,7 @@ export default function CreateSecret() {
                       <button
                         className="relative flex items-center justify-center w-10 h-10 bg-green-200"
                         type="button"
-                        onClick={() => {
-                          setCopied(true)
-                          copyToClipboard(encryptedUri)
-                        }}
+                        onClick={() => copyFieldToClipboard(encryptedUri)}
                       >
                         <ClipboardCopyIcon
                           className="w-6 h-6 text-green-600"
