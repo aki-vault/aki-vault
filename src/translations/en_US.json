@@ -21,7 +21,8 @@
     },
     "errors": {
       "phraseEmpty": "The content of your message should not be empty",
-      "creatingFailed": "An error occurred while creating the secure message."
+      "creatingFailed": "An error occurred while creating the secure message.",
+      "The encrypted message is too long": "The encrypted message is too long"
     }
   },
   "successModal": {
