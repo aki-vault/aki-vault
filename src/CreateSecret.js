@@ -38,11 +38,15 @@ export default function CreateSecret() {
     try {
       const pw = randomString();
 
-      const { data } = await postSecret({
+      const { data, status } = await postSecret({
         expiration: plan,
         message: await encryptMessage(phrase, pw),
         one_time: oneTime,
       });
+
+      if (status !== 200) {
+        throw t(`createSecret.errors.${data.message}`)
+      }
 
       const baseUrl = `${window.location.protocol}//${window.location.host}/#/s`;
 
@@ -52,7 +56,7 @@ export default function CreateSecret() {
       setProcessing(false);
       setPhrase('');
     } catch (e) {
-      setErrors(t('createSecret.errors.creatingFailed'));
+      setErrors(`${t('createSecret.errors.creatingFailed')} ${e.toString()}`);
       setProcessing(false);
     }
   };
