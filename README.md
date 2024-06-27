@@ -42,6 +42,13 @@ REACT_APP_LANG="en_US"
 
 By default, the application will load the en_US language.
 
+### Port
+the default listen port for the react app is 3000. You can freely modify it in `.env.local` as follow :
+
+```
+PORT=2999
+```
+
 ## Build
 
 Simply run the command bellow to build the frontend with React.
@@ -81,6 +88,7 @@ server {
 ## Build and install yopass-server
 This repo is not designed to provide support on yopass solution, this is just given as example and reminder
 (on Debian 11)
+golang >= 2.15 is required to build
 ```bash
 sudo apt-get install golang
 cd ~
