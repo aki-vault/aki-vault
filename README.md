@@ -43,7 +43,7 @@ REACT_APP_LANG="en_US"
 By default, the application will load the en_US language.
 
 ### Port
-the default listen port for the react app is 3000. You can freely modify it in `.env.local` as follow :
+the default listen port for the react app is 3000. You can freely modify it in `.env.local` as follows :
 
 ```
 PORT=2999
